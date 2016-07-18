@@ -1,5 +1,3 @@
-require 'pry'
-
 def game_hash
   game = {
     :home => {
@@ -193,7 +191,6 @@ def big_shoe_rebounds
           if data_items[:shoe] > biggest_shoe
             (biggest_shoe = data_items[:shoe]) && (biggest_shoe_reb = data_items[:rebounds])
           end
-          # binding.pry
         end
       end
     end
@@ -203,11 +200,26 @@ end
 
 
 
-#def most_points_scored
-#end
+def most_points_scored
+  most_points = 0
+  player_most_points = ""
+  game_hash.each do |location, team_data|
+    team_data.each do |attribute, data|
+      if attribute == :players
+        data.each do |player, data_items|
+          if data_items[:points] > most_points
+            (most_points = data_items[:points]) && (player_most_points = player)
+          end
+        end
+      end
+    end
+  end
+  player_most_points
+end
 
-#def winning_team
-#end
+def winning_team
+
+end
 
 #def player_with_longest_name
 #end
